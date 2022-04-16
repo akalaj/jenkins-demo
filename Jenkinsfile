@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Test-Input') {
+        stage('Test-Input1') {
             input {
                 message 'Please enter GCP Project ID'
                 ok 'Submit Project ID'
@@ -9,6 +9,11 @@ pipeline {
                     string(name: 'PROJECT_ID', defaultValue: 'PLEASE ENTER PROJECT ID', description: 'GCP Project ID')
                 }
             }
+            steps {
+                echo "GCP Project id=${PROJECT_ID}"
+            }
+        }
+        stage('Test-Input2'){
             input {
                 message 'Please GCE Instance Hostname'
                 ok 'Submit Hostname'
@@ -17,7 +22,6 @@ pipeline {
                 }
             }
             steps {
-                echo "GCP Project id=${PROJECT_ID}"
                 echo "GCE Hostname=${GCE_HOSTNAME}"
             }
         }        
